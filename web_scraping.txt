@@ -1,0 +1,54 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# Khởi tạo biến flag
+has_data = True
+
+# Khởi tạo danh sách rỗng để lưu thông tin
+data = []
+
+# Khởi tạo biến page
+page = 1
+
+# Vòng lặp cho đến khi không có thông tin mới
+while has_data:
+    url = f"https://xetot.com/toan-quoc/mua-ban-oto?q=honda&page={page}"
+
+    # Gửi yêu cầu GET đến trang web
+    response = requests.get(url)
+
+    # Kiểm tra mã trạng thái của yêu cầu
+    if response.status_code == 200:
+        # Lấy nội dung HTML của trang web
+        html_content = response.text
+
+        # Sử dụng BeautifulSoup để phân tích cú pháp HTML
+        soup = BeautifulSoup(html_content, "html.parser")
+
+        # Tìm và lấy thông tin cần thiết từ trang web
+        cars = soup.find_all("div", class_="main-left")
+        ## Điều kiện dừng là khi không thể tìm thấy biến car khi trang k tồn tại
+        if len(cars) > 0:
+            for car in cars:
+                price = car.find("span", class_="price")
+                owner = car.find("a", class_="font-size-12-mb")
+                phone = car.find("a", class_="xt-button phone-content")
+                province = car.find("li", class_= 'hight-light-simi-bold')
+                date = car.find("div", class_='meta-date')
+                model = car.find("ul", class_='list-unstyled mb-2')
+                buydate = car.find("ul", class_= 'car-info list-unstyled mb-1')
+                data.append({"Người bán": owner,"Giá": price, "Năm mua": buydate, "Tỉnh thành": province, "Kiểu xe:": model, "Số điện thoại": phone, "Ngày đăng": date})
+        else:
+            has_data = False
+    else:
+        print(f"Lỗi: Không thể truy cập trang {url}")
+        break
+
+    # Tăng giá trị của biến page
+    page += 1
+
+# Tạo DataFrame từ danh sách thông tin
+df = pd.DataFrame(data)
+#Lưu thông tin vào tập tin trên máy tính
+df.to_csv("F:\web_scraping\2_hand.csv")
