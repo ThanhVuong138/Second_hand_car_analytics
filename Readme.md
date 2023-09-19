@@ -1,4 +1,4 @@
-![image](https://github.com/ThanhVuong138/Second_hand_car_analytics/assets/106426014/699f5e29-afd4-4f90-9b9f-7dbb4470eb49)
+![p2 architech](https://github.com/ThanhVuong138/Second_hand_car_analytics/assets/106426014/965c7d90-f232-4ff6-8d04-c3cb3c927f95)
 
 1, Business objective: The purpose of the business is to develop the car company's app in the future, which will integrate additional features such as buying and selling used cars, analyzing the second-hand car market in Vietnam in terms of preference level and resale value, thereby identifying and capturing potential customers. It will serve as a data foundation for customer conversion and cross-selling tasks.
 
