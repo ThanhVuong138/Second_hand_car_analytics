@@ -6,20 +6,20 @@
 
 3, Description of the data retrieval and processing workflow:
 
-Step 1: Retrieve data from S3, convert the unstructured data (.json) into structured data, and process fields with null values, duplicates, missing information, using Lambda.
+Step 1: Retrieve data from S3, convert the semi-structured data (.json) into structured data, and process fields with null values, duplicates, and missing information, using Lambda.
 
-Step 2: Transform the processed data from Lambda to S3 for storing purpose.
+Step 2: Transform the processed data from Lambda to S3 for storing purposes.
 
-Step 3: Synchronize the processed data from S3 to AWS Redshift for analytic purpose
+Step 3: Synchronize the processed data from S3 to AWS Redshift for analytic purposes
 
 Step 4: Perform web scraping on used car transactions on an on-premise server.
 
-Step 5: Push the web scraped data onto AWS Redshift through by S3 public enviroment. Mapping the two data sources and map key join such as name, age, phone number, car model, and year of purchase and storing data on Redshift
+Step 5: Push the web scraped data onto AWS Redshift through the S3 public environment. Mapping the two data sources and map key joins such as name, age, phone number, car model, and year of purchase and storing data on Redshift
 
-***In case user team need to data for their activities serve for sale or service, customer marketing, continue doing step 6 --> step 7. 
+***In case the user team needs data for their activities to serve for sale or service, customer marketing, continue doing step 6 --> step 7. 
 
-Step 6: After mapping data, push the web scraped data onto AWS Redshift through by S3 public enviroment
+Step 6: After mapping data, push the web scraped data onto AWS Redshift through an S3 public environment
 
-Step 7: Export the processed data from RDS to an Excel file on the on-premise server through by S3, that make it easily accessible for the sales or user team.
+Step 7: Export the processed data from RDS to an Excel file on the on-premise server through S3, which makes it easily accessible for the sales or user team.
 
-Note: Processes are automated and monitored through Airflow. EC2 instances are used for computing, CloudWatch logs historical data, and CloudTrail tracks user activities within the pipeline, S3 and Redshift for storing data.
+Note: Processes are automated and monitored through Airflow. EC2 instances are used for computing, CloudWatch logs historical data, CloudTrail tracks user activities within the pipeline, S3, and Redshift for storing data.
